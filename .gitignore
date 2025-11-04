@@ -1,0 +1,31 @@
+# === OS junk ===
+.DS_Store
+.AppleDouble
+Thumbs.db
+
+# === Env / secrets (keep .env.example) ===
+.env
+*.local
+
+# === Editors / IDEs ===
+.vscode/
+
+# === Go (src/) ===
+src/bin/
+src/dist/
+src/tmp/
+*.out
+*.exe
+
+# === Node / Vite (client/) ===
+client/node_modules/
+client/dist/
+client/.vite/
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+
+# === Logs ===
+logs/
+*.log
