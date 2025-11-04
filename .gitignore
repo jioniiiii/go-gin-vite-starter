@@ -1,31 +1,54 @@
-# === OS junk ===
+
+# OS junk
 .DS_Store
 .AppleDouble
 Thumbs.db
 
-# === Env / secrets (keep .env.example) ===
+# Editors / IDEs
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Env / secrets
+# (keep samples like .env.example)
 .env
-*.local
+.env.*.local
+!.env.example
 
-# === Editors / IDEs ===
-.vscode/
+# Frontend envs (if present)
+client/.env
+client/.env.*.local
 
-# === Go (src/) ===
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Scope common Node/Vite logs to client (polyrepo hygiene)
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+
+# Go (src/)
 src/bin/
 src/dist/
 src/tmp/
 *.out
 *.exe
 
-# === Node / Vite (client/) ===
+# Node / Vite (client/)
 client/node_modules/
 client/dist/
+client/dist-ssr/
 client/.vite/
-client/npm-debug.log*
-client/yarn-debug.log*
-client/yarn-error.log*
-client/pnpm-debug.log*
-
-# === Logs ===
-logs/
-*.log
+client/*.local

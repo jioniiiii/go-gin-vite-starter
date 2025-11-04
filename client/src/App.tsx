@@ -1,21 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { getJson } from "./lib/api";
 
-type ApiResponse = { message: string }
+type Health = { status?: "ok" | "degraded" | "down" };
 
 export default function App() {
-  const [msg, setMsg] = useState<string>('loading...')
+  const [status, setStatus] = useState("…");
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/api/message')
-      .then(r => r.json())
-      .then((data: ApiResponse) => setMsg(data.message))
-      .catch(() => setMsg('failed to load'))
-  }, [])
+    (async () => {
+      try {
+        const data = await getJson<Health>("/health");
+        setStatus(data?.status ?? "unknown");
+        setError(null);
+      } catch (e: unknown) {
+        setStatus("down");
+        setError(e instanceof Error ? e.message : String(e));
+      }
+    })();
+  }, []);
 
   return (
-    <main>
-      <h1>Go + Gin + Vite</h1>
-      <p>API says: <strong>{msg}</strong></p>
+    <main style={{ padding: 20, fontFamily: "system-ui" }}>
+      <h1>Go + Vite Starter</h1>
+      <p>Health: {status}</p>
+      {error && <p style={{ color: "crimson" }}>Error: {error}</p>}
     </main>
-  )
+  );
 }

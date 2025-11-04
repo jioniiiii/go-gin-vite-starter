@@ -83,7 +83,6 @@ make prod      # run API in production mode
 ## API Routes
 
 * `GET /health` → `{"status":"ok"}`
-* `GET /api/message` → `{"message":"success"}`
 
 ---
 

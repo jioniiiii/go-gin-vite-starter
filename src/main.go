@@ -23,8 +23,7 @@ func main() {
 	ApplyTrustedProxies(r, cfg)
 
 	// 3) Health + api
-	r.GET("/health", func(c *gin.Context) { c.JSON(200, gin.H{"status": "ok"}) })
-	r.GET("/api/message", func(c *gin.Context) { c.JSON(200, gin.H{"message": "success"}) })
+	r.GET("/api/health", func(c *gin.Context) { c.JSON(200, gin.H{"status": "ok"}) })
 
 	// 4) Timeouts + graceful shutdown
 	srv := &http.Server{
