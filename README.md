@@ -7,8 +7,7 @@ Dev uses a Vite proxy (no CORS headaches). Prod is env-driven with CORS, timeout
 
 * Go (Gin) API with `release/debug` modes
 * Env-driven config: `PORT`, `ALLOW_ORIGINS`, timeouts, trusted proxies
-* Health endpoints: `/health`
-* Example API: `/api/message → { "message": "success" }`
+* Health endpoints: `api/health`
 * Vite + React + TS with dev proxy to `:8080`
 * Tiny Makefile: `dev`, `dev-api`, `dev-web`, `build`, `prod`
 
@@ -70,19 +69,11 @@ make prod      # run API in production mode
 ```
 
 ## Production Notes
-
-* Frontend host: set `VITE_API_URL=https://api.your-domain.com`.
-* API host: set `ALLOW_ORIGINS=https://your-frontend.com`, `GIN_MODE=release`, `ENV=production`.
-* Optional single-service: serve built SPA from Go:
-
-  ```go
-  r.Static("/assets", "./dist/assets")
-  r.NoRoute(func(c *gin.Context) { c.File("./dist/index.html") })
-  ```
+  Untested for now
 
 ## API Routes
 
-* `GET /health` → `{"status":"ok"}`
+* `GET /api/health` → `{"status":"ok"}`
 
 ---
 
